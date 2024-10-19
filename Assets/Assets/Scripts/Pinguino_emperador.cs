@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pinguino_movimiento : MonoBehaviour
+public class Pinguino_emperador : MonoBehaviour
 {
     public float speed = 5f;
     public float moveDistance = 3f;
