@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
 
-=======
-//<<<<<<< Updated upstream
->>>>>>> Stashed changes
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private LayerMask groundLayer;
-    public bool canMove = true;
 
     void Update()
     {
@@ -55,11 +50,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "MovingPlataform")
         {
             transform.parent = null;
-<<<<<<< Updated upstream
 
-
-=======
->>>>>>> Stashed changes
         }
     }
 }
