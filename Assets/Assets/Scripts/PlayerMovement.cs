@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -48,6 +49,19 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "MovingPlataform")
         {
             transform.parent = null;
+=======
+﻿using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    public bool canMove = true;
+
+    void Update()
+    {
+        if (canMove)
+        {
+            // Lógica de movimiento del jugador
+>>>>>>> Stashed changes
         }
     }
 }

@@ -5,12 +5,14 @@ using UnityEngine;
 public class Zombie : MonoBehaviour
 {
     public float MoveSpeed; // Movimiento del enemigo
-    public float MaxDisJugador; // Distancia máxima en la que localiza al jugador
+    public float MaxDisJugador; // Distancia máxima para detectar al jugador
     public Transform Player;
-    public float ThrowForce; // Fuerza con la que se lanzará al jugador
-    public float DisMinJugador; // Distancia mínima para lanzar al jugador
+    public float AttackDistance; // Distancia mínima para atacar al jugador
+    public float AttackDuration = 2f; // Duración del ataque en segundos
+    public float AttackCooldown = 5f; // Tiempo de espera entre ataques
 
     private Rigidbody2D rb; // Declara el Rigidbody2D
+    private bool isAttacking = false; // Indica si el zombie está atacando
 
     void Start()
     {
@@ -24,31 +26,46 @@ public class Zombie : MonoBehaviour
         Vector2 PlayerPos = Player.position;
         float distancia = Vector2.Distance(EnemyPos, PlayerPos);
 
-        if (distancia <= MaxDisJugador)
+        if (distancia <= MaxDisJugador && !isAttacking)
         {
-            Vector2 direction = (PlayerPos - EnemyPos).normalized; // Normaliza la dirección
-            rb.MovePosition(rb.position + direction * MoveSpeed * Time.deltaTime); // Mueve el enemigo
-
-            // Rotación hacia el jugador (opcional)
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            rb.rotation = angle; // Cambia la rotación del Rigidbody2D
-
-            // Verifica si el enemigo está lo suficientemente cerca para lanzar al jugador
-            if (distancia < DisMinJugador)
+            // Mueve el enemigo hacia el jugador solo si está lejos
+            if (distancia > AttackDistance)
             {
-                ThrowPlayer(direction);
+                Vector2 direction = (PlayerPos - EnemyPos).normalized; // Normaliza la dirección
+                rb.MovePosition(rb.position + direction * MoveSpeed * Time.deltaTime); // Mueve el enemigo
+
+                // Rotación hacia el jugador (opcional)
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                rb.rotation = angle; // Cambia la rotación del Rigidbody2D
+            }
+            else
+            {
+                // Comienza el ataque si el jugador está dentro de la distancia de ataque
+                StartCoroutine(AttackPlayer());
             }
         }
     }
 
-    private void ThrowPlayer(Vector2 direction)
+    private IEnumerator AttackPlayer()
     {
-        // Obtiene el Rigidbody2D del jugador
-        Rigidbody2D playerRb = Player.GetComponent<Rigidbody2D>();
-        if (playerRb != null)
+        isAttacking = true; // Indica que el zombie está atacando
+
+        // Aquí puedes agregar la lógica para "morder" al jugador, como quitar salud
+        PlayerMovement playerMovement = Player.GetComponent<PlayerMovement>();
+        if (playerMovement != null)
         {
-            // Aplica una fuerza al jugador en la dirección opuesta al enemigo
-            playerRb.AddForce(-direction * ThrowForce, ForceMode2D.Impulse);
+            playerMovement.canMove = false; // Desactiva el movimiento del jugador
+            // Puedes agregar un efecto de daño visual o sonoro aquí
         }
+
+        yield return new WaitForSeconds(AttackDuration); // Espera 2 segundos
+
+        if (playerMovement != null)
+        {
+            playerMovement.canMove = true; // Reactiva el movimiento del jugador
+        }
+
+        yield return new WaitForSeconds(AttackCooldown); // Espera 5 segundos antes de poder atacar de nuevo
+        isAttacking = false; // Permite que el zombie ataque de nuevo
     }
 }
