@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private LayerMask groundLayer;
+    public bool canMove = true;
 
     void Update()
     {
@@ -49,19 +50,8 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "MovingPlataform")
         {
             transform.parent = null;
-=======
-﻿using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
-{
-    public bool canMove = true;
 
-    void Update()
-    {
-        if (canMove)
-        {
-            // Lógica de movimiento del jugador
->>>>>>> Stashed changes
         }
     }
 }
