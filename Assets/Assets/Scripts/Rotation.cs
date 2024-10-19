@@ -47,7 +47,6 @@ public class Rotation : MonoBehaviour
         degrees = Mathf.Atan2(mousepost.y, mousepost.x) * Mathf.Rad2Deg;
         transform.eulerAngles = Vector3.forward * degrees;
 
-
     }
 
 
