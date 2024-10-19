@@ -27,7 +27,11 @@ Transform:
   m_GameObject: {fileID: 2435722109294922960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
   m_LocalScale: {x: 1, y: 1, z: 1}
+=======
+  m_LocalScale: {x: 1, y: 2, z: 1}
+>>>>>>> Stashed changes
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8316644648351159735}
@@ -46,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8189d6f02e7744e4c935d819fee4c326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   RotationSpeed: 100
   Timer: 4
 --- !u!61 &4327887895822674733
@@ -74,6 +79,10 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+=======
+  RotationSpeed: 200
+  Timer: 1
+>>>>>>> Stashed changes
 --- !u!1001 &2435722108123218993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131,7 +140,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8366505905019465473, guid: 4d015fef47f22dd449a3124a398d8225, type: 3}
       propertyPath: m_Color.b
+<<<<<<< Updated upstream
       value: 0.47158223
+=======
+      value: 0.57271266
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 8366505905019465473, guid: 4d015fef47f22dd449a3124a398d8225, type: 3}
       propertyPath: m_Color.g
@@ -139,7 +152,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8366505905019465473, guid: 4d015fef47f22dd449a3124a398d8225, type: 3}
       propertyPath: m_Color.r
+<<<<<<< Updated upstream
       value: 0.45469916
+=======
+      value: 0.60937566
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d015fef47f22dd449a3124a398d8225, type: 3}

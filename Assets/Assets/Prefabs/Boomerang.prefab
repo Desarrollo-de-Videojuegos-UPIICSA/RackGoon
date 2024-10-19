@@ -99,7 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d4fb5c47a72db74f9a76c7a7738ed38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream:Assets/Assets/Prefabs/Boomerang.prefab
   speed: 60
+=======
+  speed: 1
+  returnTime: 30
+>>>>>>> Stashed changes:Assets/Assets/Prefabs/Triangle.prefab
   player: {fileID: 0}
   returnSpeed: 70
 --- !u!50 &1056601807655847507
