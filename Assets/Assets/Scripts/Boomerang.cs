@@ -5,15 +5,14 @@ using UnityEngine;
 public class Boomerang : MonoBehaviour
 {
 
-  //  public float speed = 5f; 
-    public Transform player;  
     public float returnSpeed = 3f; 
     private Vector3 initialPosition; 
 
     public float speed = 10f;
     public float returnTime = 100f;
-//    public Transform player;
+    public Transform player;
     private Vector3 launchDirection;
+    private float returnTimer;
 
     private bool returning = false;
     private Rigidbody2D rb;
@@ -41,12 +40,12 @@ public class Boomerang : MonoBehaviour
 
         if (player != null)
 
-      //  float returnTimer += Time.deltaTime;
-       //  float t = returnTimer / returnTime;
-       // float t = Time.deltaTime;
-        //  transform.position = Vector3.Lerp(transform.position, player.position, t);
+        returnTimer += Time.deltaTime;
+         float t = returnTimer / returnTime;
+       //t = Time.deltaTime;
+          transform.position = Vector3.Lerp(transform.position, player.position, t);
 
-      //  if (t >=  100f)
+        if (t >=  100f)
 
         {
             Vector3 direction = (player.position - transform.position).normalized;
