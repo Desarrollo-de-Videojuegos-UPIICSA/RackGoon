@@ -14,16 +14,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private LayerMask groundLayer;
 
-    void Update()
+
+    private void Awake()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        
-        Flip();
+        rb = GetComponent<Rigidbody2D>();   
     }
+
 
     private void FixedUpdate()
     {
+        horizontal = Input.GetAxisRaw("Horizontal");
+
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
+        Flip();
     }
 
     private void Flip()
