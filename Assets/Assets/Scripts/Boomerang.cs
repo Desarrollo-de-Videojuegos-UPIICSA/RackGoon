@@ -8,11 +8,13 @@ public class Boomerang : MonoBehaviour
     public Transform player;  
     public float returnSpeed = 3f; 
     private Vector3 initialPosition; 
-    private bool returning = false; 
+    private bool returning = false;
+    private Rigidbody2D rb;
 
     void Start()
     {
-        initialPosition = transform.position; 
+        initialPosition = transform.position;
+        rb = GetComponent<Rigidbody2D>();   
     }
 
     void Update()
@@ -45,11 +47,13 @@ public class Boomerang : MonoBehaviour
     {
         Vector3 direction = (initialPosition - transform.position).normalized;
         transform.position += direction * returnSpeed * Time.deltaTime;
+        rb.bodyType = RigidbodyType2D.Kinematic;
 
- 
+
         if (Vector3.Distance(transform.position, initialPosition) < 0.1f)
         {
             Destroy(gameObject);
         }
+
     }
 }
