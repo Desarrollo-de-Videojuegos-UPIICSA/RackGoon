@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
             horizontal = RecoilDirection.x * -1;
             vertical = RecoilDirection.y * -1;
 
-            rb.velocity = new Vector2(horizontal * recoilSpeed_1, vertical * recoilSpeed_1);
+            rb.velocity = new Vector2((horizontal * recoilSpeed_1) * 4, vertical * recoilSpeed_1);
             rb.AddForce(new Vector2(horizontal * recoilSpeed_1, vertical * recoilSpeed_1));
 
             nextFireTime = Time.time + principal_fireRate;
@@ -105,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
             horizontal = RecoilDirection.x * -1;
             vertical = RecoilDirection.y * -1;
 
-            rb.velocity = new Vector2(horizontal * recoilSpeed_2, vertical * recoilSpeed_2);
+            rb.velocity = new Vector2((horizontal * recoilSpeed_2) * 4, vertical * recoilSpeed_2);
             rb.AddForce(new Vector2(horizontal * recoilSpeed_2, vertical * recoilSpeed_2) );
 
 
