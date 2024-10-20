@@ -57,7 +57,7 @@ public class mono : MonoBehaviour
         tiempo += Time.deltaTime;
         if (tiempo >= 2)
         {
-            Instantiate(bala, punto_instancia.position, Quaternion.identity);
+            Instantiate(bala, this.transform.position, Quaternion.identity);
             tiempo = 0;
         }
 

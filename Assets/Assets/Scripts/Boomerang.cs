@@ -8,15 +8,19 @@ public class Boomerang : MonoBehaviour
     public Transform player;  
     public float returnSpeed = 3f; 
     private Vector3 initialPosition; 
-    private bool returning = false; 
+    private bool returning = false;
+    private GameObject pyr;
 
     void Start()
     {
         initialPosition = transform.position;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+  
     }
 
     void Update()
     {
+
         if (returning)
         {
             ReturnToEnemy();
