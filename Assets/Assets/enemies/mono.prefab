@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8249891451935421842}
   - component: {fileID: 5562987863641354145}
   - component: {fileID: 5921707101321168400}
+  - component: {fileID: 547211259703146501}
   m_Layer: 0
   m_Name: mono
   m_TagString: Untagged
@@ -133,3 +134,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &547211259703146501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6853808918281936089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc9521dac643c6146be72362ff922410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_pos: {fileID: 0}
+  speed: 6
+  distancia_frenado: 8
+  punto_instancia: {fileID: 0}
+  bala: {fileID: 8768326168431394918, guid: 152bb3b2b6a1ac44eabec7df03948aad, type: 3}
+  tiempo_disparo: 0
+  fuerza_salto: 0
