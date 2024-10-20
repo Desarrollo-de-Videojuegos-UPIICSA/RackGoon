@@ -46,7 +46,7 @@ public class Weapon : MonoBehaviour
     {
         if (WeaponType)
         {
-            Debug.Log("Babb!!!!");
+         //   Debug.Log("Babb!!!!");
             GameObject projectile = Instantiate(Bala, actionpoint.transform.position, actionpoint.transform.rotation); 
         }
         else
