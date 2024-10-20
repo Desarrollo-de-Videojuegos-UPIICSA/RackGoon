@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
-    private float speed = .5f;
+    private float speed = 1f;
     private bool isFacingRight;
     private float flipDirection;
     public bool canMove = true;
@@ -24,10 +24,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         if (canMove)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
-
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         }
         
