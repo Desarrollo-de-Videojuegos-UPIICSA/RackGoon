@@ -9,6 +9,8 @@ public class pinguino : MonoBehaviour
     private Vector3 startPosition;
     private bool movingRight = true;
 
+    public int HPMuro;
+
     void Start()
     {
         startPosition = transform.position; 
@@ -46,5 +48,31 @@ public class pinguino : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         movingRight = !movingRight; // Cambia la dirección
+
+        if (collision.GetContact(0).collider.tag == ("Bala"))
+        {
+
+            HPMuro--;
+
+            if (HPMuro < 1)
+            {
+                Debug.Log("la pala a sido destruida");
+
+
+                Destroy(this.gameObject);
+
+
+            }
+
+
+        }
+
     }
+
+
+ 
+
+
+
+
 }
