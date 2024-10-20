@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3567794536367043542}
   - component: {fileID: 3567794536367043543}
-  - component: {fileID: 3567794536367043544}
   - component: {fileID: 3567794536367043547}
   - component: {fileID: 585476189155647770}
   m_Layer: 0
@@ -87,25 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3567794536367043544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3567794536367043538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de63cd9d1a306b04b8291459f76fde99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 2
-  MaxDisJugador: 10
-  Player: {fileID: 6189798109951167676, guid: 1d6ecc3619722a44a845ac9f4bf4db3e, type: 3}
-  AttackDistance: 1
-  AttackDuration: 2
-  AttackCooldown: 5
-  Vidazombie: 0
 --- !u!70 &3567794536367043547
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
