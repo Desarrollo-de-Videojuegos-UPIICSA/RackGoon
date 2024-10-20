@@ -12,7 +12,7 @@ public class ZonaDeMuerte : MonoBehaviour
         if (collision.GetContact(0).collider.tag==("Player"))
         {
 
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("bryanyricardo");
 
         }
     }
