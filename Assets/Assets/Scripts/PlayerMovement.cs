@@ -15,21 +15,33 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 RecoilDirection;
     public bool canMove = true;
 
+
+    public Animator anime;
+    private string nowplayin="";
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private LayerMask groundLayer;
 
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();   
+
+        rb = GetComponent<Rigidbody2D>();
+        anime = GetComponent<Animator>();
+    
+
     }
 
 
     private void FixedUpdate()
     {
         RecoilDirection = GetComponentInChildren<Rotation>().direction;
-        isShooting = Input.GetMouseButton(0) ? true : false;
+
         
+
+        isShooting = Input.GetMouseButton(0) || Input.GetMouseButton(1) ? true : false;
+      
+
         if (canMove)
         {
             if (isShooting)
@@ -38,14 +50,29 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                horizontal = Input.GetAxisRaw("Horizontal");
+                horizontal = Input.GetAxisRaw("Horizontal");// 
+
+                if (horizontal != 0)
+                {
+                    Switchanime("Run");
+                }
+                else
+                {
+
+                    Switchanime("Default");
+                }
+
+
                 rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+                //if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.A)) { }
+               
+
             }
             
         }
         
         flipDirection = GetComponentInChildren<Rotation>().degrees <= 0 ? (GetComponentInChildren<Rotation>().degrees * -1) : GetComponentInChildren<Rotation>().degrees;
-        Debug.Log(flipDirection);
+       // Debug.Log(flipDirection);
         if (flipDirection > 90)
         {
             // girar el sprite hacia izquierda
@@ -82,4 +109,20 @@ public class PlayerMovement : MonoBehaviour
 
         }
     }
-}
+    private void Switchanime(string animated, float corosfade = 0.2f)
+    {
+
+        if (nowplayin != animated)
+        {
+            nowplayin = animated;
+
+            //   anime.Play(animated);
+            anime.CrossFade(animated, corosfade);
+
+        }
+
+    }
+
+ }
+
+
