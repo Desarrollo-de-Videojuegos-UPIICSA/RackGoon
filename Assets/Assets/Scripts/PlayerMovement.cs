@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
     private float vertical;
-    private float speed = 1f;
+    private float speed = 3f;
     private float recoilSpeed = 10f;
     private float flipDirection;
     private bool isShooting;
