@@ -9,9 +9,13 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal;
     private float vertical;
     private float speed = 1f;
-    private float recoilSpeed = 10f;
+    private float recoilSpeed_1 = 5f;
+    private float recoilSpeed_2 = 20f;
     private float flipDirection;
     private bool isShooting;
+    public float principal_fireRate = 0.2f;
+    public float secundary_fireRate = 2.0f;
+    private float nextFireTime = 0f;
     private Vector3 RecoilDirection;
     public bool canMove = true;
 
@@ -28,11 +32,11 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         RecoilDirection = GetComponentInChildren<Rotation>().direction;
-        isShooting = Input.GetMouseButton(0) ? true : false;
+        isShooting = Input.GetMouseButton(0) || Input.GetMouseButton(1) ? true : false;
         
         if (canMove)
         {
-            if (isShooting)
+            if (isShooting && Time.time >= nextFireTime)
             {
                 Recoil();
             }
@@ -60,10 +64,25 @@ public class PlayerMovement : MonoBehaviour
 
     private void Recoil()
     {
-        horizontal = RecoilDirection.x * -1;
-        vertical = RecoilDirection.y * -1;
+        if (Input.GetMouseButton(0))
+        {
+            horizontal = RecoilDirection.x * -1;
+            vertical = RecoilDirection.y * -1;
 
-        rb.velocity = new Vector2(horizontal * recoilSpeed, vertical * recoilSpeed);
+            rb.velocity = new Vector2(horizontal * recoilSpeed_1, vertical * recoilSpeed_1);
+            
+            nextFireTime = Time.time + principal_fireRate;
+        }
+        else
+        {
+            horizontal = RecoilDirection.x * -1;
+            vertical = RecoilDirection.y * -1;
+
+            rb.velocity = new Vector2(horizontal * recoilSpeed_2, vertical * recoilSpeed_2);
+            
+            nextFireTime = Time.time + secundary_fireRate;
+        }
+        
     }
     
     private void OnCollisionEnter2D(Collision2D collision)
