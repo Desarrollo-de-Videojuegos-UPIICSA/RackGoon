@@ -123,7 +123,7 @@ MonoBehaviour:
   MoveSpeed: 2
   MaxDisJugador: 5
   Player: {fileID: 6189798109951167676, guid: 1d6ecc3619722a44a845ac9f4bf4db3e, type: 3}
-  AttackDistance: 0
+  AttackDistance: 1
   AttackDuration: 2
   AttackCooldown: 5
 --- !u!70 &4153265844020327857
