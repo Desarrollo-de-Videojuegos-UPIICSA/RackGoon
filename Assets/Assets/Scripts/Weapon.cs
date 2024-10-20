@@ -6,8 +6,10 @@ public class Weapon : MonoBehaviour
 {
     public GameObject actionpoint;
     public GameObject Bala;
-    public float fireRate = 0.2f; // Tiempo entre cada disparo
+    public float principal_fireRate = 0.2f;
+    public float secundary_fireRate = 2.0f;// Tiempo entre cada disparo
     private float nextFireTime = 0f; // Controla cuándo puede disparar de nuevo
+    private bool WeaponType;
 
     void OnEnable()
     {
@@ -29,16 +31,29 @@ public class Weapon : MonoBehaviour
         {
             // Metodo de disparo de proyectil metralleta
             ShootProjectile();
-            nextFireTime = Time.time + fireRate;
+            nextFireTime = Time.time + principal_fireRate;
+            WeaponType = true;
+        }
+        if (Input.GetMouseButton(1) && Time.time >= nextFireTime)
+        {
+            ShootProjectile();
+            nextFireTime = Time.time + secundary_fireRate;
+            WeaponType = false;
         }
     }
 
     void ShootProjectile()
     {
-        Debug.Log("Babb!!!!");
-        GameObject projectile = Instantiate(Bala, actionpoint.transform.position, actionpoint.transform.rotation);
-
-
+        if (WeaponType)
+        {
+            Debug.Log("Babb!!!!");
+            GameObject projectile = Instantiate(Bala, actionpoint.transform.position, actionpoint.transform.rotation); 
+        }
+        else
+        {
+            GameObject projectile = Instantiate(Bala, actionpoint.transform.position, actionpoint.transform.rotation);
+        }
+        
     }
 
 }
