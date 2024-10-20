@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,14 +8,10 @@ public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
     private float vertical;
-    private float speed = 1f;
-    private float recoilSpeed_1 = 5f;
-    private float recoilSpeed_2 = 20f;
+    private float speed = 3f;
+    private float recoilSpeed = 10f;
     private float flipDirection;
     private bool isShooting;
-    public float principal_fireRate = 0.2f;
-    public float secundary_fireRate = 2.0f;
-    private float nextFireTime = 0f;
     private Vector3 RecoilDirection;
     public bool canMove = true;
 
@@ -24,18 +21,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();   
     }
 
 
     private void FixedUpdate()
     {
         RecoilDirection = GetComponentInChildren<Rotation>().direction;
-        isShooting = Input.GetMouseButton(0) || Input.GetMouseButton(1) ? true : false;
-
+        isShooting = Input.GetMouseButton(0) ? true : false;
+        
         if (canMove)
         {
-            if (isShooting && Time.time >= nextFireTime)
+            if (isShooting)
             {
                 Recoil();
             }
@@ -44,9 +41,9 @@ public class PlayerMovement : MonoBehaviour
                 horizontal = Input.GetAxisRaw("Horizontal");
                 rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
             }
-
+            
         }
-
+        
         flipDirection = GetComponentInChildren<Rotation>().degrees <= 0 ? (GetComponentInChildren<Rotation>().degrees * -1) : GetComponentInChildren<Rotation>().degrees;
         Debug.Log(flipDirection);
         if (flipDirection > 90)
@@ -63,27 +60,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Recoil()
     {
-        if (Input.GetMouseButton(0))
-        {
-            horizontal = RecoilDirection.x * -1;
-            vertical = RecoilDirection.y * -1;
+        horizontal = RecoilDirection.x * -1;
+        vertical = RecoilDirection.y * -1;
 
-            rb.velocity = new Vector2(horizontal * recoilSpeed_1, vertical * recoilSpeed_1);
-
-            nextFireTime = Time.time + principal_fireRate;
-        }
-        else
-        {
-            horizontal = RecoilDirection.x * -1;
-            vertical = RecoilDirection.y * -1;
-
-            rb.velocity = new Vector2(horizontal * recoilSpeed_2, vertical * recoilSpeed_2);
-
-            nextFireTime = Time.time + secundary_fireRate;
-        }
-
+        rb.velocity = new Vector2(horizontal * recoilSpeed, vertical * recoilSpeed);
     }
-
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "MovingPlataform")
