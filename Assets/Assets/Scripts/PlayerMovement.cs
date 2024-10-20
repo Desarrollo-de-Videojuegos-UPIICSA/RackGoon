@@ -8,9 +8,9 @@ public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
     private float vertical;
-    private float speed = 1f;
-    private float recoilSpeed_1 = 5f;
-    private float recoilSpeed_2 = 40f;
+    private float speed = 4f;
+    private float recoilSpeed_1 = 9f;
+    private float recoilSpeed_2 = 15f;
     private float flipDirection;
     private bool isShooting;
     public float principal_fireRate = 0.2f;
