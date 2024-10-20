@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();   
+        rb = GetComponent<Rigidbody2D>();
     }
 
 
@@ -33,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     {
         RecoilDirection = GetComponentInChildren<Rotation>().direction;
         isShooting = Input.GetMouseButton(0) || Input.GetMouseButton(1) ? true : false;
-        
+
         if (canMove)
         {
             if (isShooting && Time.time >= nextFireTime)
@@ -45,9 +44,9 @@ public class PlayerMovement : MonoBehaviour
                 horizontal = Input.GetAxisRaw("Horizontal");
                 rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
             }
-            
+
         }
-        
+
         flipDirection = GetComponentInChildren<Rotation>().degrees <= 0 ? (GetComponentInChildren<Rotation>().degrees * -1) : GetComponentInChildren<Rotation>().degrees;
         Debug.Log(flipDirection);
         if (flipDirection > 90)
@@ -70,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
             vertical = RecoilDirection.y * -1;
 
             rb.velocity = new Vector2(horizontal * recoilSpeed_1, vertical * recoilSpeed_1);
-            
+
             nextFireTime = Time.time + principal_fireRate;
         }
         else
@@ -79,12 +78,12 @@ public class PlayerMovement : MonoBehaviour
             vertical = RecoilDirection.y * -1;
 
             rb.velocity = new Vector2(horizontal * recoilSpeed_2, vertical * recoilSpeed_2);
-            
+
             nextFireTime = Time.time + secundary_fireRate;
         }
-        
+
     }
-    
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "MovingPlataform")
