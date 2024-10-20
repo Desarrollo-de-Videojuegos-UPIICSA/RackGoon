@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - MovingPlataform
+  - Bala
+  - Audio
   layers:
   - Default
   - TransparentFX
