@@ -10,6 +10,7 @@ public class Zombie : MonoBehaviour
     public float AttackDistance; // Distancia mínima para atacar al jugador
     public float AttackDuration = 2f; // Duración del ataque en segundos
     public float AttackCooldown = 5f; // Tiempo de espera entre ataques
+    public int zombie;
 
     private Rigidbody2D rb; // Declara el Rigidbody2D
     private bool isAttacking = false; // Indica si el zombie está atacando
@@ -20,6 +21,29 @@ public class Zombie : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.GetContact(0).collider.tag == ("Bala"))
+        {
+
+            zombie--;
+
+            if (zombie < 1)
+            {
+                Debug.Log("la pala a sido destruida");
+
+
+                Destroy(this.gameObject);
+
+
+            }
+
+
+        }
+
+
+    }
     void FixedUpdate()
     {
         Vector2 EnemyPos = transform.position;

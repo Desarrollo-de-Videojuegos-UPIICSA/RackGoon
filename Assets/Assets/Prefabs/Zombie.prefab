@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4153265844020327857}
   m_Layer: 0
   m_Name: Zombie
-  m_TagString: Untagged
+  m_TagString: Bala
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,11 +121,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 2
-  MaxDisJugador: 5
+  MaxDisJugador: 10
   Player: {fileID: 6189798109951167676, guid: 1d6ecc3619722a44a845ac9f4bf4db3e, type: 3}
   AttackDistance: 1
   AttackDuration: 2
   AttackCooldown: 5
+  zombie: 3
 --- !u!70 &4153265844020327857
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
