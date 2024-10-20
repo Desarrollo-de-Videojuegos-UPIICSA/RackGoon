@@ -8,15 +8,20 @@ public class Pinguino_emperador : MonoBehaviour
     public float moveDistance = 3f;
     private Vector3 startPosition;
     private bool movingRight = true;
-    
+
     // Start is called before the first frame update
     void Start()
     {
-    startPosition = transform.position;
+        startPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
+    {
+        Move();
+    }
+
+    void Move()
     {
         if (movingRight)
         {
@@ -36,5 +41,11 @@ public class Pinguino_emperador : MonoBehaviour
                 movingRight = true;
             }
         }
+    }
+
+    // Cambia de dirección al colisionar con algo
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        movingRight = !movingRight; // Cambia la dirección
     }
 }
