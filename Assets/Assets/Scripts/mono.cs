@@ -15,15 +15,27 @@ public class mono : MonoBehaviour
     public float fuerza_salto; // Fuerza del salto}
     private Rigidbody2D rb;
 
+    public Animator anime;
+    private string nowplayin = "";
+
+    public int HPMuro;
+
+
 
 
     void Start()
     {
-        player_pos = GameObject.Find("Player").transform;
+       
         rb = GetComponent<Rigidbody2D>(); // Referencia al Rigidbody2D
 
-        player_pos = GameObject.Find("Player").transform;
+    
+        player_pos = GameObject.FindGameObjectWithTag("Player").transform;
         StartCoroutine(SaltarCadaTresSegundos()); // Inicia la coroutine para saltar
+        anime = GetComponent<Animator>();
+
+        Switchanime("burla");
+
+
     }
 
     void FixedUpdate()
@@ -87,13 +99,7 @@ public class mono : MonoBehaviour
             this.transform.localScale = new Vector2(-1, 1);
         }
 
-        // Disparo
-        tiempo += Time.deltaTime;
-        if (tiempo >= tiempo_disparo)
-        {
-            Instantiate(bala, this.gameObject.transform.position, Quaternion.identity);
-            tiempo = 0;
-        }
+       
 
 
         // Movimiento
@@ -106,16 +112,7 @@ public class mono : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, player_pos.position, -speed * Time.deltaTime);
         }
 
-        // Flip
-        if (player_pos.position.x > this.transform.position.x)
-        {
-            this.transform.localScale = new Vector2(1, 1);
-        }
-        else
-        {
-            this.transform.localScale = new Vector2(-1, 1);
-        }
-
+   
 
     }
 
@@ -137,5 +134,44 @@ public class mono : MonoBehaviour
         // Puedes ajustar esta lógica, por ejemplo, si el enemigo está muy cerca del jugador
         return Vector2.Distance(transform.position, player_pos.position) < distancia_frenado && Mathf.Abs(rb.velocity.y) < 0.01f;
     }
+
+    private void Switchanime(string animated, float corosfade = 0.2f)
+    {
+
+        if (nowplayin != animated)
+        {
+            nowplayin = animated;
+
+            //   anime.Play(animated);
+            anime.CrossFade(animated, corosfade);
+
+        }
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+
+        if (collision.GetContact(0).collider.tag == ("Bala"))
+        {
+
+            HPMuro--;
+
+            if (HPMuro < 1)
+            {
+                Debug.Log("la pala a sido destruida");
+
+
+                Destroy(this.gameObject);
+
+
+            }
+
+
+        }
+
+    }
+
 
 }
