@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Esteban: Quitare comportamiento de paralizar mapache
+
+//El zombie ya cuenta con vida y movimiento, el unico fallo que tiene el bloqueo al jugador
 public class Zombie : MonoBehaviour
 {
     public float MoveSpeed; // Movimiento del enemigo
@@ -10,7 +13,7 @@ public class Zombie : MonoBehaviour
     public float AttackDistance; // Distancia mínima para atacar al jugador
     public float AttackDuration = 2f; // Duración del ataque en segundos
     public float AttackCooldown = 5f; // Tiempo de espera entre ataques
-    public int zombie;
+    public int Vidazombie; //Es la vida del zombie
 
     private Rigidbody2D rb; // Declara el Rigidbody2D
     private bool isAttacking = false; // Indica si el zombie está atacando
@@ -21,29 +24,6 @@ public class Zombie : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-
-        if (collision.GetContact(0).collider.tag == ("Bala"))
-        {
-
-            zombie--;
-
-            if (zombie < 1)
-            {
-                Debug.Log("la pala a sido destruida");
-
-
-                Destroy(this.gameObject);
-
-
-            }
-
-
-        }
-
-
-    }
     void FixedUpdate()
     {
         Vector2 EnemyPos = transform.position;
@@ -51,26 +31,25 @@ public class Zombie : MonoBehaviour
         float distancia = Vector2.Distance(EnemyPos, PlayerPos);
 
         if (distancia <= MaxDisJugador && !isAttacking)
+
+
         {
             // Mueve el enemigo hacia el jugador solo si está lejos
-            if (distancia > AttackDistance)
-            {
+           // if (distancia > AttackDistance)
+           // {
                 Vector2 direction = (PlayerPos - EnemyPos).normalized; // Normaliza la dirección
                 rb.MovePosition(rb.position + direction * MoveSpeed * Time.deltaTime); // Mueve el enemigo
 
                 // Rotación hacia el jugador (opcional)
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                rb.rotation = angle; // Cambia la rotación del Rigidbody2D
-            }
-            else
-            {
-                // Comienza el ataque si el jugador está dentro de la distancia de ataque
-                StartCoroutine(AttackPlayer());
-            }
+               // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+              //  rb.rotation = angle; // Cambia la rotación del Rigidbody2D
+            
+       
         }
     }
 
-    private IEnumerator AttackPlayer()
+    //Esta funcion es la que tiene el fallo, cuando se acerca al jugador despues de unos segundos se buguea y aparte no le hace nada al Jugador Dx
+   /* private IEnumerator AttackPlayer()
     {
         isAttacking = true; // Indica que el zombie está atacando
 
@@ -91,5 +70,28 @@ public class Zombie : MonoBehaviour
 
         yield return new WaitForSeconds(AttackCooldown); // Espera 5 segundos antes de poder atacar de nuevo
         isAttacking = false; // Permite que el zombie ataque de nuevo
+    }
+   */
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.GetContact(0).collider.tag == ("Bala"))
+        {
+
+            Vidazombie--;
+
+            if (Vidazombie < 1)
+            {
+        
+                Destroy(this.gameObject);
+
+
+            }
+
+
+        }
+
+
     }
 }
