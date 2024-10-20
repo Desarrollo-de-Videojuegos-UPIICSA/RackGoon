@@ -42,18 +42,16 @@ public class PlayerMovement : MonoBehaviour
     {
         RecoilDirection = GetComponentInChildren<Rotation>().direction;
         isShooting = Input.GetMouseButton(0) || Input.GetMouseButton(1) ? true : false;
-
-      
-
+        
         if (canMove)
         {
-            if (isShooting)
+            if (isShooting && Time.time >= nextFireTime)
             {
                 Recoil();
             }
             else
             {
-                horizontal = Input.GetAxisRaw("Horizontal");// 
+                horizontal = Input.GetAxisRaw("Horizontal");
 
                 if (horizontal != 0)
                 {
@@ -97,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
             horizontal = RecoilDirection.x * -1;
             vertical = RecoilDirection.y * -1;
 
-           // rb.velocity = new Vector2(horizontal * recoilSpeed_1, vertical * recoilSpeed_1);
+            rb.velocity = new Vector2(horizontal * recoilSpeed_1, vertical * recoilSpeed_1);
             rb.AddForce(new Vector2(horizontal * recoilSpeed_1, vertical * recoilSpeed_1));
 
             nextFireTime = Time.time + principal_fireRate;
@@ -107,8 +105,8 @@ public class PlayerMovement : MonoBehaviour
             horizontal = RecoilDirection.x * -1;
             vertical = RecoilDirection.y * -1;
 
-           // rb.velocity = new Vector2(horizontal * recoilSpeed_2, vertical * recoilSpeed_2);
-            rb.AddForce(new Vector2(horizontal * recoilSpeed_2, vertical * recoilSpeed_1) );
+            rb.velocity = new Vector2(horizontal * recoilSpeed_2, vertical * recoilSpeed_2);
+            rb.AddForce(new Vector2(horizontal * recoilSpeed_2, vertical * recoilSpeed_2) );
 
 
             nextFireTime = Time.time + secundary_fireRate;
