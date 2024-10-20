@@ -91,7 +91,7 @@ public class mono : MonoBehaviour
         tiempo += Time.deltaTime;
         if (tiempo >= tiempo_disparo)
         {
-            Instantiate(bala, punto_instancia.position, Quaternion.identity);
+            Instantiate(bala, this.gameObject.transform.position, Quaternion.identity);
             tiempo = 0;
         }
 
@@ -116,13 +116,7 @@ public class mono : MonoBehaviour
             this.transform.localScale = new Vector2(-1, 1);
         }
 
-        // Disparo
-        tiempo += Time.deltaTime;
-        if (tiempo >= tiempo_disparo)
-        {
-            Instantiate(bala, punto_instancia.position, Quaternion.identity);
-            tiempo = 0;
-        }
+
     }
 
     IEnumerator SaltarCadaTresSegundos()
