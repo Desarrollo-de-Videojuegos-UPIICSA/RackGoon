@@ -10,10 +10,12 @@ public class plataforma_cae : MonoBehaviour
 
     Rigidbody2D rb;
     Vector3 originalPos;
+    Collider2D coli;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        coli = GetComponent<Collider2D>();  
     }
 
     void FixedUpdate()
@@ -47,6 +49,8 @@ public class plataforma_cae : MonoBehaviour
         readyToShake = true;
         yield return new WaitForSeconds(1.0f);
         rb.bodyType = RigidbodyType2D.Dynamic;
+        coli.enabled = false;
+
       
 
     }
