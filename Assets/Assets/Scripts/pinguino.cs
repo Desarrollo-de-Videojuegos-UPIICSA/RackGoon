@@ -41,4 +41,10 @@ public class pinguino : MonoBehaviour
             }
         }
     }
+
+    // Cambia de dirección al colisionar con algo
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        movingRight = !movingRight; // Cambia la dirección
+    }
 }
