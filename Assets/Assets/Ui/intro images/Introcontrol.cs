@@ -1,11 +1,11 @@
-using Microsoft.Unity.VisualStudio.Editor;
+//using Microsoft.Unity.VisualStudio.Editor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-//using UnityEngine.UI;
+using UnityEngine.UI;
 
 public class Introcontrol : MonoBehaviour
 {
@@ -123,7 +123,13 @@ public class Introcontrol : MonoBehaviour
                 currentImage++;
 
                 if (currentImage >= imageArray.Length)
-                    SceneManager.LoadScene(1);
+                {
+                SceneManager.LoadScene(1);
+                Cursor.visible = true;
+                Screen.lockCursor = false;
+                Destroy(this);
+                }
+                    
 
                 timer1Remaining = timer1;
             }

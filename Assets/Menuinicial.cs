@@ -10,7 +10,7 @@ public class Menuinicial : MonoBehaviour
     {
 
         // Debug.Log("clicking game time");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(2);
 
     }
 
