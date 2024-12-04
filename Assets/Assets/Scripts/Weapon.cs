@@ -6,7 +6,7 @@ public class Weapon : MonoBehaviour
 {
     public GameObject actionpoint;
     public GameObject Bala;
-    public float principal_fireRate = 0.2f;
+    public float principal_fireRate = 0.4f;
     public float secundary_fireRate = 2.0f;// Tiempo entre cada disparo
     private float nextFireTime = 0f; // Controla cuándo puede disparar de nuevo
     private bool WeaponType;

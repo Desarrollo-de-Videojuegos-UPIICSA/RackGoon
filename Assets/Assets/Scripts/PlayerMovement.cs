@@ -1,4 +1,6 @@
-
+// ya no le muevan cabrones
+// namas arreglen la animacion y que se gire a la direccion del disparo
+// atte: Patto 
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,113 +8,97 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float recoilSpeed_1 = 4f;
+    public float recoilSpeed_2 = 15f;
+    public bool canMove = true;
+    public Vector2 boxSize;
+    public float castDistance;
+
     private float horizontal;
     private float vertical;
-    private float speed = 4f;
-    private float recoilSpeed_1 = 9f;
-    private float recoilSpeed_2 = 15f;
-    private float flipDirection;
-    private bool isShooting;
-    public float principal_fireRate = 0.2f;
-    public float secundary_fireRate = 2.0f;
-    private float nextFireTime = 0f;
+    private bool flipDirection;
+    private bool isShooting = false;
     private Vector3 RecoilDirection;
-    public bool canMove = true;
 
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Weapon weapon;
 
-    public Animator anime;
-    private string nowplayin="";
-
-    
-
+    public Animator animator;
+    private string nowPlayin;
 
     private void Awake()
     {
-
         rb = GetComponent<Rigidbody2D>();
-        anime = GetComponent<Animator>();
-    
-
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
 
     private void FixedUpdate()
     {
         RecoilDirection = GetComponentInChildren<Rotation>().direction;
-        isShooting = Input.GetMouseButton(0) || Input.GetMouseButton(1) ? true : false;
-        
+
         if (canMove)
         {
-            if (isShooting && Time.time >= nextFireTime)
+            if ((Input.GetMouseButton(0) || Input.GetMouseButton(1)) && !isShooting)
             {
-                Recoil();
+                StartCoroutine(Recoil());
             }
-            else
-            {
-                horizontal = Input.GetAxisRaw("Horizontal");
-
-                if (horizontal != 0)
-                {
-                    Switchanime("Run");
-                }
-                else
-                {
-
-                    Switchanime("Default");
-                }
-
-
-                rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-                //if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.A)) { }
-               
-
-            }
-            
         }
-        
-        flipDirection = GetComponentInChildren<Rotation>().degrees <= 0 ? (GetComponentInChildren<Rotation>().degrees * -1) : GetComponentInChildren<Rotation>().degrees;
-       // Debug.Log(flipDirection);
-        if (flipDirection > 90)
-        {
-            // girar el sprite hacia izquierda
-        }
-
-        if (flipDirection <= 90)
-        {
-            // girar el sprite hacia derecha
-        }
-
+        //flipDirection = GetComponentInChildren<Rotation>().degrees <= 0;
+        //spriteRenderer.flipX = flipDirection;
     }
 
-    private void Recoil()
+    IEnumerator Recoil()
     {
-
-        Switchanime("Arma");
+        isShooting = true;
+        SwitchAnimation("Arma");
         if (Input.GetMouseButton(0))
         {
             horizontal = RecoilDirection.x * -1;
             vertical = RecoilDirection.y * -1;
 
-            rb.velocity = new Vector2((horizontal * recoilSpeed_1) * 4, vertical * recoilSpeed_1);
-            rb.AddForce(new Vector2(horizontal * recoilSpeed_1, vertical * recoilSpeed_1));
-
-            nextFireTime = Time.time + principal_fireRate;
+            if(!IsMaxHeight())
+            {
+                rb.velocity = new Vector2(horizontal * recoilSpeed_1, vertical * recoilSpeed_1);
+            }
+            else
+            {
+                rb.velocity = new Vector2(horizontal * recoilSpeed_1, (float)((vertical * recoilSpeed_1)*.5));
+            }
+            
+            yield return new WaitForSeconds(weapon.principal_fireRate);
+            
+            SwitchAnimation("Default");
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            isShooting = false;
         }
         else
         {
             horizontal = RecoilDirection.x * -1;
             vertical = RecoilDirection.y * -1;
 
-            rb.velocity = new Vector2((horizontal * recoilSpeed_2) * 4, vertical * recoilSpeed_2);
-            rb.AddForce(new Vector2(horizontal * recoilSpeed_2, vertical * recoilSpeed_2) );
+            rb.velocity = new Vector2(horizontal * recoilSpeed_2, vertical * recoilSpeed_2);
 
-
-            nextFireTime = Time.time + secundary_fireRate;
+            yield return new WaitForSeconds(weapon.secundary_fireRate);
+            
+            SwitchAnimation("Default");
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            isShooting = false;
         }
     }
-    
+
+    public bool IsMaxHeight()
+    {
+        return !Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer);
+    }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(transform.position-transform.up * castDistance, boxSize);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "MovingPlataform")
@@ -126,26 +112,15 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "MovingPlataform")
         {
             transform.parent = null;
-
         }
     }
-    private void Switchanime(string animated, float corosfade = 0.2f)
+    private void SwitchAnimation(string animated, float corosfade = 0.2f)
     {
-
-        if (nowplayin != animated)
+        if (nowPlayin != animated)
         {
-            nowplayin = animated;
+            nowPlayin = animated;
 
-            //   anime.Play(animated);
-            anime.CrossFade(animated, corosfade);
-
+            animator.CrossFade(animated, corosfade);
         }
-
     }
-
  }
-
-
-
-
-
