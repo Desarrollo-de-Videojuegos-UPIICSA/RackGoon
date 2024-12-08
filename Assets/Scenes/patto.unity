@@ -257,13 +257,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 361b9ec09408c1143bb36b0d6efe79ac, type: 3}
---- !u!1001 &1253704170
+--- !u!1001 &2080296593
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1556993885914535114, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
+      propertyPath: orthographic size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711808383543714528, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
+      propertyPath: secundary_fireRate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4383864645606216782, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
       propertyPath: m_Name
       value: Player
@@ -311,6 +319,10 @@ PrefabInstance:
     - target: {fileID: 6152477171639416658, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8300069314125766207, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
+      propertyPath: boxSize.x
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}

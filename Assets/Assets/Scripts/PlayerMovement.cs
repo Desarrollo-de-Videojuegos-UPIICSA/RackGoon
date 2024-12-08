@@ -1,5 +1,5 @@
 // ya no le muevan cabrones
-// namas arreglen la animacion y que se gire a la direccion del disparo
+// todo: - arreglar la animacion
 // atte: Patto 
 using System;
 using System.Collections;
@@ -16,29 +16,32 @@ public class PlayerMovement : MonoBehaviour
 
     private float horizontal;
     private float vertical;
-    private bool flipDirection;
+    private float flipDirection;
     private bool isShooting = false;
     private Vector3 RecoilDirection;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Animator animator;
     [SerializeField] private Weapon weapon;
-
-    public Animator animator;
+    [SerializeField] private LayerMask groundLayer;
+    
     private string nowPlayin;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
     {
         RecoilDirection = GetComponentInChildren<Rotation>().direction;
-
+        flipDirection = GetComponentInChildren<Rotation>().degrees;
+        
+        FlipSprite(flipDirection);
+        
+        if(rb.velocity.x <= 0.1) SwitchAnimation("Default");
+        
         if (canMove)
         {
             if ((Input.GetMouseButton(0) || Input.GetMouseButton(1)) && !isShooting)
@@ -46,8 +49,20 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(Recoil());
             }
         }
-        //flipDirection = GetComponentInChildren<Rotation>().degrees <= 0;
-        //spriteRenderer.flipX = flipDirection;
+    }
+
+    public void FlipSprite(float flipDirection)
+    {
+        if (!(flipDirection > -90 && flipDirection < 90))
+        {
+            spriteRenderer.flipX = true;
+            weapon.GetComponentInChildren<SpriteRenderer>().flipY = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+            weapon.GetComponentInChildren<SpriteRenderer>().flipY = false;
+        }
     }
 
     IEnumerator Recoil()
