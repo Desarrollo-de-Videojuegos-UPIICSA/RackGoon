@@ -105,16 +105,16 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BOTONES_OFICIALES1_0
+      name: Btn_Play
       rect:
         serializedVersion: 2
-        x: 0
-        y: 148
-        width: 164
-        height: 108
+        x: 87
+        y: 160
+        width: 76
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 87, y: 11, z: 0, w: 60}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -126,16 +126,16 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BOTONES_OFICIALES1_1
+      name: Btn_Exit
       rect:
         serializedVersion: 2
-        x: 87
-        y: 0
-        width: 78
-        height: 128
+        x: 88
+        y: 96
+        width: 76
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 94, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -157,8 +157,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BOTONES_OFICIALES1_1: -342780651
-      BOTONES_OFICIALES1_0: 1230139739
+      Btn_Play: 1230139739
+      Btn_Exit: -342780651
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
