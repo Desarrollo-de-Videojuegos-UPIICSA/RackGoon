@@ -10,6 +10,7 @@ using Image = UnityEngine.UI.Image;
 public class Menuinicial : MonoBehaviour
 {
     public GameObject Title;
+    public Transform EndPoint;
     public GameObject Logo;
     public Canvas Buttons;
     public Image FlashPanel;
@@ -17,7 +18,8 @@ public class Menuinicial : MonoBehaviour
     public AudioSource musicSource; // Fuente de audio para la música
 
     private bool isAnimating;
-
+    private float Velocity = 100;
+    
     private void Start()
     {
         Logo.SetActive(false);
@@ -41,7 +43,7 @@ public class Menuinicial : MonoBehaviour
     IEnumerator MenuAnimation()
     {
         // Titulo cayendo
-        yield return new WaitForSeconds(1f);
+        yield return StartCoroutine(TitleFall());
         
         // Disparo de escopeta y fade in
         yield return StartCoroutine(FadeIn());
@@ -50,6 +52,15 @@ public class Menuinicial : MonoBehaviour
         yield return StartCoroutine(FadeOut());
         
         FlashPanel.gameObject.SetActive(false);
+    }
+
+    IEnumerator TitleFall()
+    {
+        while (Title.transform.position != EndPoint.position)
+        {
+            Title.transform.position = Vector3.MoveTowards(Title.transform.position, EndPoint.position, Velocity * Time.deltaTime);
+            yield return null;
+        }
     }
 
     IEnumerator FadeIn()
@@ -81,6 +92,8 @@ public class Menuinicial : MonoBehaviour
             FlashPanel.color = color;
             yield return null;
         }
+
+        yield return new WaitForSeconds(.5f);
 
         // Reproducir música después del fading
         if (!musicSource.isPlaying)
