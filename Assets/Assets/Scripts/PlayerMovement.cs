@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float recoilSpeed_1 = 4f;
     public float recoilSpeed_2 = 15f;
+    public Vector2 knockbackForce;
     public bool canMove = true;
     public Vector2 boxSize;
     public float castDistance;
@@ -63,6 +64,11 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.flipX = false;
             weapon.GetComponentInChildren<SpriteRenderer>().flipY = false;
         }
+    }
+
+    public void Knockback(Vector2 hitPoint)
+    {
+        rb.velocity = new Vector2(-knockbackForce.x * hitPoint.x, knockbackForce.y);
     }
 
     IEnumerator Recoil()
