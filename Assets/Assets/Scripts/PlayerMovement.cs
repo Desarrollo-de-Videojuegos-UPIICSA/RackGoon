@@ -8,8 +8,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float recoilSpeed_1 = 4f;
+    public float recoilSpeed_1 = 8f;
     public float recoilSpeed_2 = 15f;
+    public float decelerationRate = 0.95f;
     public Vector2 knockbackForce;
     public bool canMove = true;
     public Vector2 boxSize;
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private float flipDirection;
     private bool isShooting = false;
     private Vector3 RecoilDirection;
+    
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -69,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
     public void Knockback(Vector2 hitPoint)
     {
         rb.velocity = new Vector2(-knockbackForce.x * hitPoint.x, knockbackForce.y);
+        StartCoroutine(Decelerate());
     }
 
     IEnumerator Recoil()
@@ -86,13 +89,13 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                rb.velocity = new Vector2(horizontal * recoilSpeed_1, (float)((vertical * recoilSpeed_1)*.5));
+                rb.velocity = new Vector2(horizontal * recoilSpeed_1, (float)((vertical * recoilSpeed_1)*.75));
             }
+            
+            StartCoroutine(Decelerate());
             
             yield return new WaitForSeconds(weapon.principal_fireRate);
             
-            SwitchAnimation("Default");
-            rb.velocity = new Vector2(0, rb.velocity.y);
             isShooting = false;
         }
         else
@@ -102,12 +105,23 @@ public class PlayerMovement : MonoBehaviour
 
             rb.velocity = new Vector2(horizontal * recoilSpeed_2, vertical * recoilSpeed_2);
 
+            StartCoroutine(Decelerate());
+            
             yield return new WaitForSeconds(weapon.secundary_fireRate);
             
-            SwitchAnimation("Default");
-            rb.velocity = new Vector2(0, rb.velocity.y);
             isShooting = false;
         }
+    }
+    
+    IEnumerator Decelerate()
+    {
+        while (rb.velocity.magnitude > 0.1f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x * decelerationRate, rb.velocity.y);
+            yield return new WaitForFixedUpdate();
+        }
+        rb.velocity = Vector2.zero;
+        SwitchAnimation("Default");
     }
 
     public bool IsMaxHeight()

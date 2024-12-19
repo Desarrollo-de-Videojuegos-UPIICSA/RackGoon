@@ -11,7 +11,7 @@ public class PlayerCombat : MonoBehaviour
     private int currentLives; // Vidas actuales del jugador
     public GameObject[] hearts; // Array de objetos UI que representan los corazones
 
-    public float controlLoseTimer;
+    public float controlLoseTimer = 2f;
 
     void Start()
     {
