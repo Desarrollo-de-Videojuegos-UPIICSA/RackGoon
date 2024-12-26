@@ -1,26 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.Examples;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
     private PlayerMovement playerMovement;
     private Animator animator;
+    private Rigidbody2D rb;
 
     public int maxLives = 2; // Máximo número de corazones (vidas)
     private int currentLives; // Vidas actuales del jugador
     public GameObject[] hearts; // Array de objetos UI que representan los corazones
-
+    public Vector2 startPosition;
     public float controlLoseTimer = 2f;
 
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
 
         // Inicializar vidas
         currentLives = maxLives;
         UpdateHeartsUI();
+        
+        startPosition = transform.position;
     }
 
     public void TakeDamage(float damage)
@@ -74,8 +80,20 @@ public class PlayerCombat : MonoBehaviour
     {
         // Acción al morir
         Debug.Log("El jugador ha muerto.");
-        playerMovement.canMove = false;
-        // Puedes añadir una animación de muerte, reinicio de nivel, etc.
+        StartCoroutine(Respawn(0.5f));
+
+    }
+
+    IEnumerator Respawn(float duration)
+    {
+        rb.simulated = false;
+        rb.velocity = Vector2.zero;
+        transform.localScale = Vector3.zero;
+        yield return new WaitForSeconds(duration);
+        currentLives = maxLives;
+        transform.position = startPosition;
+        transform.localScale = Vector3.one;
+        rb.simulated = true;
     }
 
     private IEnumerator DisableCollider()

@@ -1,6 +1,3 @@
-// ya no le muevan cabrones
-// todo: - arreglar la animacion
-// atte: Patto 
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,8 +6,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float recoilSpeed_1 = 8f;
-    public float recoilSpeed_2 = 15f;
-    public float decelerationRate = 0.95f;
+    public float recoilSpeed_2 = 16f;
+    public float decelerationRate = 0.75f;
+    public float minVelocity = 0.1f; // Velocidad mínima antes de detenerse por completo
     public Vector2 knockbackForce;
     public bool canMove = true;
     public Vector2 boxSize;
@@ -19,14 +17,12 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal;
     private float vertical;
     private float flipDirection;
-    private bool isShooting = false;
     private Vector3 RecoilDirection;
     
-
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Animator animator;
     [SerializeField] private Weapon weapon;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] public Rigidbody2D rb;
+    [SerializeField] private Animator animator;
     [SerializeField] private LayerMask groundLayer;
     
     private string nowPlayin;
@@ -43,14 +39,11 @@ public class PlayerMovement : MonoBehaviour
         
         FlipSprite(flipDirection);
         
-        if(rb.velocity.x <= 0.1) SwitchAnimation("Default");
-        
-        if (canMove)
+        if(rb.velocity.x <= minVelocity) SwitchAnimation("Default");
+
+        if (canMove && weapon.IsShooting())
         {
-            if ((Input.GetMouseButton(0) || Input.GetMouseButton(1)) && !isShooting)
-            {
-                StartCoroutine(Recoil());
-            }
+            StartCoroutine(Recoil());
         }
     }
 
@@ -76,48 +69,46 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Recoil()
     {
-        isShooting = true;
+        canMove = false;
         SwitchAnimation("Arma");
-        if (Input.GetMouseButton(0))
+        if (weapon.isShootingPrimary)
         {
             horizontal = RecoilDirection.x * -1;
             vertical = RecoilDirection.y * -1;
 
             if(!IsMaxHeight())
             {
-                rb.velocity = new Vector2(horizontal * recoilSpeed_1, vertical * recoilSpeed_1);
+                rb.velocity = new Vector2(rb.velocity.x + (horizontal * recoilSpeed_1),
+                    rb.velocity.y + (vertical * recoilSpeed_1));
             }
             else
             {
-                rb.velocity = new Vector2(horizontal * recoilSpeed_1, (float)((vertical * recoilSpeed_1)*.75));
+                rb.velocity = new Vector2(rb.velocity.x + (horizontal * recoilSpeed_1),
+                    (rb.velocity.y + (vertical * recoilSpeed_1)) * .5f);
             }
-            
-            StartCoroutine(Decelerate());
-            
             yield return new WaitForSeconds(weapon.principal_fireRate);
-            
-            isShooting = false;
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            canMove = true;
         }
-        else
+        else if(weapon.isShootingSecondary)
         {
             horizontal = RecoilDirection.x * -1;
             vertical = RecoilDirection.y * -1;
 
-            rb.velocity = new Vector2(horizontal * recoilSpeed_2, vertical * recoilSpeed_2);
-
-            StartCoroutine(Decelerate());
+            rb.velocity = new Vector2(rb.velocity.x + (horizontal * recoilSpeed_2), rb.velocity.y + (vertical * recoilSpeed_2));
             
             yield return new WaitForSeconds(weapon.secundary_fireRate);
-            
-            isShooting = false;
+            canMove = true;
+            StartCoroutine(Decelerate());
         }
+        
     }
     
     IEnumerator Decelerate()
     {
         while (rb.velocity.magnitude > 0.1f)
         {
-            rb.velocity = new Vector2(rb.velocity.x * decelerationRate, rb.velocity.y);
+            rb.velocity = new Vector2(rb.velocity.x * decelerationRate, rb.velocity.y * decelerationRate);
             yield return new WaitForFixedUpdate();
         }
         rb.velocity = Vector2.zero;
@@ -158,4 +149,4 @@ public class PlayerMovement : MonoBehaviour
             animator.CrossFade(animated, corosfade);
         }
     }
- }
+}
