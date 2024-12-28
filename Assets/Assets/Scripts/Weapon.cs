@@ -1,19 +1,27 @@
-using System;
+// Weapon.cs
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
     public PlayerMovement playerMovement;
-    
+
     public GameObject actionpoint;
     public GameObject Bala;
     public float principal_fireRate = 0.2f;
     public float secundary_fireRate = 1.0f; // Tiempo entre cada disparo
     public bool isShootingPrimary = false;
     public bool isShootingSecondary = false;
-    
+
+    public AudioClip primaryFireSound; // Sonido disparo principal
+    public AudioClip secondaryFireSound; // Sonido disparo secundario
+    private AudioSource audioSource; // Fuente de audio
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void FixedUpdate()
     {
         if (playerMovement.canMove)
@@ -44,6 +52,13 @@ public class Weapon : MonoBehaviour
     private IEnumerator ShootPrimaryProjectile()
     {
         Instantiate(Bala, actionpoint.transform.position, actionpoint.transform.rotation);
+
+        // Reproducir sonido de disparo principal
+        if (primaryFireSound != null)
+        {
+            audioSource.PlayOneShot(primaryFireSound);
+        }
+
         yield return new WaitForSeconds(principal_fireRate);
         isShootingPrimary = false;
     }
@@ -51,6 +66,13 @@ public class Weapon : MonoBehaviour
     private IEnumerator ShootSecondaryProjectile()
     {
         Instantiate(Bala, actionpoint.transform.position, actionpoint.transform.rotation);
+
+        // Reproducir sonido de disparo secundario
+        if (secondaryFireSound != null)
+        {
+            audioSource.PlayOneShot(secondaryFireSound);
+        }
+
         yield return new WaitForSeconds(secundary_fireRate);
         isShootingSecondary = false;
     }
