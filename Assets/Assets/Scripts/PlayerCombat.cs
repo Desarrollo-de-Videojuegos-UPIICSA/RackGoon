@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro.Examples;
@@ -13,7 +14,7 @@ public class PlayerCombat : MonoBehaviour
     public int maxLives = 2; // Máximo número de corazones (vidas)
     private int currentLives; // Vidas actuales del jugador
     public GameObject[] hearts; // Array de objetos UI que representan los corazones
-    public Vector2 startPosition;
+    private Vector3 currentCheckpoint;
     public float controlLoseTimer = 2f;
 
     void Start()
@@ -25,8 +26,8 @@ public class PlayerCombat : MonoBehaviour
         // Inicializar vidas
         currentLives = maxLives;
         UpdateHeartsUI();
-        
-        startPosition = transform.position;
+
+        currentCheckpoint = transform.position;
     }
 
     public void TakeDamage(float damage)
@@ -91,7 +92,7 @@ public class PlayerCombat : MonoBehaviour
         transform.localScale = Vector3.zero;
         yield return new WaitForSeconds(duration);
         currentLives = maxLives;
-        transform.position = startPosition;
+        transform.position = currentCheckpoint;
         transform.localScale = Vector3.one;
         rb.simulated = true;
     }
@@ -108,5 +109,14 @@ public class PlayerCombat : MonoBehaviour
         playerMovement.canMove = false;
         yield return new WaitForSeconds(controlLoseTimer);
         playerMovement.canMove = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Checkpoint"))
+        {
+            currentCheckpoint = collision.transform.position; // Guarda la posicion del checkopoint para el respawn
+            collision.GetComponent<Collider2D>().enabled = false; // Desactiva el colider del Checkpoint
+        }
     }
 }

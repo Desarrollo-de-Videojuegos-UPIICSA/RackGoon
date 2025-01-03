@@ -64,7 +64,6 @@ public class PlayerMovement : MonoBehaviour
     public void Knockback(Vector2 hitPoint)
     {
         rb.velocity = new Vector2(-knockbackForce.x * hitPoint.x, knockbackForce.y);
-        StartCoroutine(Decelerate());
     }
 
     IEnumerator Recoil()
