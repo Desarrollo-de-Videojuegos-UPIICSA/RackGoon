@@ -689,6 +689,14 @@ PrefabInstance:
       propertyPath: orthographic size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3711808383543714528, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
+      propertyPath: primaryFireSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c4c81ce74aea0e746b79ba669e0080c3, type: 3}
+    - target: {fileID: 3711808383543714528, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
+      propertyPath: secondaryFireSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6aa9328521cd2ef47a048329fb552497, type: 3}
     - target: {fileID: 4383864645606216782, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
       propertyPath: m_Name
       value: Player
