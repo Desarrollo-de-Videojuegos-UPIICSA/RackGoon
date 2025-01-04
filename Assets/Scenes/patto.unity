@@ -689,14 +689,6 @@ PrefabInstance:
       propertyPath: orthographic size
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 3711808383543714528, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
-      propertyPath: primaryFireSound
-      value: 
-      objectReference: {fileID: 8300000, guid: c4c81ce74aea0e746b79ba669e0080c3, type: 3}
-    - target: {fileID: 3711808383543714528, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
-      propertyPath: secondaryFireSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 6aa9328521cd2ef47a048329fb552497, type: 3}
     - target: {fileID: 4383864645606216782, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
       propertyPath: m_Name
       value: Player
@@ -704,22 +696,6 @@ PrefabInstance:
     - target: {fileID: 4383864645606216782, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
       propertyPath: m_Layer
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5333301593979677181, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
-      propertyPath: m_Size.x
-      value: 0.39
-      objectReference: {fileID: 0}
-    - target: {fileID: 5333301593979677181, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
-      propertyPath: m_Size.y
-      value: 0.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 5333301593979677181, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.008
-      objectReference: {fileID: 0}
-    - target: {fileID: 5333301593979677181, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.022
       objectReference: {fileID: 0}
     - target: {fileID: 6152477171639416658, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
       propertyPath: m_RootOrder
@@ -764,14 +740,6 @@ PrefabInstance:
     - target: {fileID: 6152477171639416658, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8300069314125766207, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
-      propertyPath: knockbackForce.x
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 8300069314125766207, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
-      propertyPath: knockbackForce.y
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d9a02ebb27e1464eaee3c74ee292cc0, type: 3}
