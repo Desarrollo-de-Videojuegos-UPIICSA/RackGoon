@@ -1,59 +1,84 @@
+// Weapon.cs
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    public PlayerMovement playerMovement;
+
     public GameObject actionpoint;
     public GameObject Bala;
-    public float principal_fireRate = 0.4f;
-    public float secundary_fireRate = 2.0f;// Tiempo entre cada disparo
-    private float nextFireTime = 0f; // Controla cuándo puede disparar de nuevo
-    private bool WeaponType;
+    public float principal_fireRate = 0.2f;
+    public float secundary_fireRate = 1.0f; // Tiempo entre cada disparo
+    public bool isShootingPrimary = false;
+    public bool isShootingSecondary = false;
 
-    void OnEnable()
+    public AudioClip primaryFireSound; // Sonido disparo principal
+    public AudioClip secondaryFireSound; // Sonido disparo secundario
+    private AudioSource audioSource; // Fuente de audio
+
+    void Start()
     {
-        // Suscribirse al evento OnBulletFired
-        //Bullet.OnBulletFired += BulletFiredEventHandler;
+        audioSource = GetComponent<AudioSource>();
     }
 
-    // Método que se llama cuando se dispara el evento
-    void BulletFiredEventHandler()
+    void FixedUpdate()
     {
-        Debug.Log("¡Una bala fue disparada!");
-        // Aquí puedes agregar lógica adicional que ocurra cuando se dispara la bala
-    }
-
-    void Update()
-    {
-        // El botón izquierdo del mouse está presionado
-        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
+        if (playerMovement.canMove)
         {
-            // Metodo de disparo de proyectil metralleta
-            ShootProjectile();
-            nextFireTime = Time.time + principal_fireRate;
-            WeaponType = true;
-        }
-        if (Input.GetMouseButton(1) && Time.time >= nextFireTime)
-        {
-            ShootProjectile();
-            nextFireTime = Time.time + secundary_fireRate;
-            WeaponType = false;
+            HandlePrimaryShooting();
+            HandleSecondaryShooting();
         }
     }
 
-    void ShootProjectile()
+    private void HandlePrimaryShooting()
     {
-        if (WeaponType)
+        if (Input.GetMouseButton(0) && !isShootingPrimary)
         {
-         //   Debug.Log("Babb!!!!");
-            GameObject projectile = Instantiate(Bala, actionpoint.transform.position, actionpoint.transform.rotation); 
+            isShootingPrimary = true;
+            StartCoroutine(ShootPrimaryProjectile());
         }
-        else
-        {
-            GameObject projectile = Instantiate(Bala, actionpoint.transform.position, actionpoint.transform.rotation);
-        }
-        
     }
 
+    private void HandleSecondaryShooting()
+    {
+        if (Input.GetMouseButton(1) && !isShootingSecondary)
+        {
+            isShootingSecondary = true;
+            StartCoroutine(ShootSecondaryProjectile());
+        }
+    }
+
+    private IEnumerator ShootPrimaryProjectile()
+    {
+        Instantiate(Bala, actionpoint.transform.position, actionpoint.transform.rotation);
+
+        // Reproducir sonido de disparo principal
+        if (primaryFireSound != null)
+        {
+            audioSource.PlayOneShot(primaryFireSound);
+        }
+
+        yield return new WaitForSeconds(principal_fireRate);
+        isShootingPrimary = false;
+    }
+
+    private IEnumerator ShootSecondaryProjectile()
+    {
+        Instantiate(Bala, actionpoint.transform.position, actionpoint.transform.rotation);
+
+        // Reproducir sonido de disparo secundario
+        if (secondaryFireSound != null)
+        {
+            audioSource.PlayOneShot(secondaryFireSound);
+        }
+
+        yield return new WaitForSeconds(secundary_fireRate);
+        isShootingSecondary = false;
+    }
+
+    public bool IsShooting()
+    {
+        return isShootingPrimary || isShootingSecondary;
+    }
 }

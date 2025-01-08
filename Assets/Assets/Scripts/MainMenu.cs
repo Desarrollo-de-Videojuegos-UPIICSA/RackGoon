@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 
-public class Menuinicial : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
     public GameObject Title;
     public Transform EndPoint;

@@ -8,16 +8,16 @@ using UnityEngine;
 public class Zombie : MonoBehaviour
 {
     public float MoveSpeed = 2f; // Movimiento del enemigo
-    public float MaxDisJugador = 1f; // Distancia máxima para detectar al jugador
+    public float MaxDisJugador = 1f; // Distancia mï¿½xima para detectar al jugador
     public Transform Player;
-    //public float AttackDistance; // Distancia mínima para atacar al jugador
-    //public float AttackDuration = 2f; // Duración del ataque en segundos
+    //public float AttackDistance; // Distancia mï¿½nima para atacar al jugador
+    //public float AttackDuration = 2f; // Duraciï¿½n del ataque en segundos
     //public float AttackCooldown = 5f; // Tiempo de espera entre ataques
     public int Vidazombie; //Es la vida del zombie
     public LayerMask CapaPlataforma;
 
     private Rigidbody2D rb; // Declara el Rigidbody2D
-   // private bool isAttacking = false; // Indica si el zombie está atacando
+   // private bool isAttacking = false; // Indica si el zombie estï¿½ atacando
 
     void Start()
     {
@@ -55,30 +55,30 @@ public class Zombie : MonoBehaviour
         }
         // if (distancia <= MaxDisJugador && !isAttacking)
         // {
-        // Mueve el enemigo hacia el jugador solo si está lejos
+        // Mueve el enemigo hacia el jugador solo si estï¿½ lejos
         // if (distancia > AttackDistance)
         // {
 
-        //Vector2 direction = (PlayerPos - EnemyPos).normalized; // Normaliza la dirección
+        //Vector2 direction = (PlayerPos - EnemyPos).normalized; // Normaliza la direcciï¿½n
         // rb.MovePosition(rb.position + direction * MoveSpeed * Time.deltaTime); // Mueve el enemigo
 
-        // Rotación hacia el jugador (opcional)
+        // Rotaciï¿½n hacia el jugador (opcional)
         // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        //rb.rotation = angle; // Cambia la rotación del Rigidbody2D
+        //rb.rotation = angle; // Cambia la rotaciï¿½n del Rigidbody2D
         // }
     }
 
     //Esta funcion es la que tiene el fallo, cuando se acerca al jugador despues de unos segundos se buguea y aparte no le hace nada al Jugador Dx
    /* private IEnumerator AttackPlayer()
     {
-        isAttacking = true; // Indica que el zombie está atacando
+        isAttacking = true; // Indica que el zombie estï¿½ atacando
 
-        // Aquí puedes agregar la lógica para "morder" al jugador, como quitar salud
+        // Aquï¿½ puedes agregar la lï¿½gica para "morder" al jugador, como quitar salud
         PlayerMovement playerMovement = Player.GetComponent<PlayerMovement>();
         if (playerMovement != null)
         {
             playerMovement.canMove = false; // Desactiva el movimiento del jugador
-            // Puedes agregar un efecto de daño visual o sonoro aquí
+            // Puedes agregar un efecto de daï¿½o visual o sonoro aquï¿½
         }
 
         yield return new WaitForSeconds(AttackDuration); // Espera 2 segundos
@@ -95,7 +95,6 @@ public class Zombie : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-
         if (collision.GetContact(0).collider.tag == ("Bala"))
         {
 
@@ -103,13 +102,13 @@ public class Zombie : MonoBehaviour
 
             if (Vidazombie < 1)
             {
-        
                 Destroy(this.gameObject);
-
-
             }
+        }
 
-
+        if (collision.gameObject.tag == ("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerCombat>().TakeDamage(1, collision.GetContact(0).normal);
         }
 
 
