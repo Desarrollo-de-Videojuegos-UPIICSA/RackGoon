@@ -29,6 +29,7 @@ public class Pinguino_emperador : MonoBehaviour
 
             if (transform.position.x >= startPosition.x + moveDistance)
             {
+                FlipSprite();
                 movingRight = false;
             }
         }
@@ -38,14 +39,24 @@ public class Pinguino_emperador : MonoBehaviour
 
             if (transform.position.x <= startPosition.x - moveDistance)
             {
+                FlipSprite();
                 movingRight = true;
             }
         }
     }
 
+    // Método para voltear el sprite
+    void FlipSprite()
+    {
+        Vector3 newScale = transform.localScale;
+        newScale.x *= -1; // Invierte el valor de X
+        transform.localScale = newScale;
+    }
+
     // Cambia de dirección al colisionar con algo
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        FlipSprite();
         movingRight = !movingRight; // Cambia la dirección
     }
 }
