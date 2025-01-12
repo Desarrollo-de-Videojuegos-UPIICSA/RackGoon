@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -137,12 +137,12 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -6.5, y: -39.5}
+      - - {x: -8.5, y: -47.5}
         - {x: 23.5, y: 39.5}
         - {x: 26.5, y: 39.5}
         - {x: 51.5, y: -12.5}
-        - {x: 51.5, y: -39.5}
-        - {x: 29.5, y: -39.5}
+        - {x: 51.5, y: -47.5}
+        - {x: 29.5, y: -47.5}
       physicsShape: []
       tessellationDetail: 0
       bones: []
@@ -167,13 +167,138 @@ TextureImporter:
       - - {x: -41, y: -17.5}
         - {x: -17, y: 39.5}
         - {x: -13, y: 39.5}
-        - {x: 16, y: -39.5}
-        - {x: -41, y: -39.5}
+        - {x: 22, y: -47.5}
+        - {x: -41, y: -47.5}
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: cf54f728fa192b94f8fa5457971ee0e6
       internalID: 1731568913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zona 2 Luz 1
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 72
+        width: 136
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -36, y: -47.5}
+        - {x: -2, y: 39.5}
+        - {x: 2, y: 39.5}
+        - {x: 36, y: -47.5}
+      - - {x: 4, y: 35.5}
+        - {x: 4, y: 34.5}
+        - {x: -4, y: 34.5}
+        - {x: -4, y: 35.5}
+        - {x: -5, y: 35.5}
+        - {x: -5, y: 37.5}
+        - {x: -4, y: 37.5}
+        - {x: -4, y: 38.5}
+        - {x: -3, y: 38.5}
+        - {x: -3, y: 39.5}
+        - {x: 2, y: 39.5}
+        - {x: 3, y: 39.5}
+        - {x: 3, y: 38.5}
+        - {x: 4, y: 38.5}
+        - {x: 4, y: 37.5}
+        - {x: 5, y: 37.5}
+        - {x: 5, y: 35.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3109ece424bf6834e8bdf7bb85d65694
+      internalID: -431572373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zona 2 Luz 2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 72
+        width: 136
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -4, y: 34.5}
+        - {x: -36, y: -47.5}
+        - {x: 38, y: -47.5}
+        - {x: 4, y: 34.5}
+      - - {x: 4, y: 35.5}
+        - {x: 4, y: 34.5}
+        - {x: -4, y: 34.5}
+        - {x: -4, y: 35.5}
+        - {x: -5, y: 35.5}
+        - {x: -5, y: 37.5}
+        - {x: -4, y: 37.5}
+        - {x: -4, y: 38.5}
+        - {x: -3, y: 38.5}
+        - {x: -3, y: 39.5}
+        - {x: 0, y: 39.5}
+        - {x: 3, y: 39.5}
+        - {x: 3, y: 38.5}
+        - {x: 4, y: 38.5}
+        - {x: 4, y: 37.5}
+        - {x: 5, y: 37.5}
+        - {x: 5, y: 35.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 578270ec6800d844cbfe0f4230d6b54a
+      internalID: -686765112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zona 2 Luz 3
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 72
+        width: 120
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28, y: -47.5}
+        - {x: 6, y: 39.5}
+        - {x: 10, y: 39.5}
+        - {x: 45, y: -47.5}
+      - - {x: 12, y: 35.5}
+        - {x: 12, y: 34.5}
+        - {x: 4, y: 34.5}
+        - {x: 4, y: 35.5}
+        - {x: 3, y: 35.5}
+        - {x: 3, y: 37.5}
+        - {x: 4, y: 37.5}
+        - {x: 4, y: 38.5}
+        - {x: 5, y: 38.5}
+        - {x: 5, y: 39.5}
+        - {x: 11, y: 39.5}
+        - {x: 11, y: 38.5}
+        - {x: 12, y: 38.5}
+        - {x: 12, y: 37.5}
+        - {x: 13, y: 37.5}
+        - {x: 13, y: 35.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b21160de610f9f547b0485e9879e0c3a
+      internalID: 1282205010
       vertices: []
       indices: 
       edges: []
@@ -189,9 +314,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Zona 2 Luz 2: -686765112
       Luz 2: -1761617113
       Luz 1: 1731568913
+      Zona 2 Luz 3: 1282205010
       Clinica_0: 1660017072
+      Zona 2 Luz 1: -431572373
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
