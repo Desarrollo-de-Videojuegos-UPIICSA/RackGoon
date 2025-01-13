@@ -148,14 +148,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33b6ad9c14f8fa34998b9480e0c04a65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  principal_fireRate: 5
-  secundary_fireRate: 6
+  recoilSpeed_1: 20
+  recoilSpeed_2: 28
+  decelerationRate: 0.75
+  minVelocity: 0.1
+  knockbackForce: {x: 0, y: 0}
   canMove: 1
+  boxSize: {x: 0, y: 0}
+  castDistance: 0
+  weapon: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   rb: {fileID: 2191743390470892676}
+  animator: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
-  anime: {fileID: 0}
 --- !u!95 &7074147813102527289
 Animator:
   serializedVersion: 4
