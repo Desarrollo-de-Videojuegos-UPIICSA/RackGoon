@@ -8,19 +8,18 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     private PlayerMovement playerMovement;
-    private Animator animator;
+    [SerializeField] private Animator animator;    
     private Rigidbody2D rb;
 
     public int maxLives = 2; // Máximo número de corazones (vidas)
     private int currentLives; // Vidas actuales del jugador
     public GameObject[] hearts; // Array de objetos UI que representan los corazones
     private Vector3 currentCheckpoint;
-    public float controlLoseTimer = 2f;
+    public float controlLoseTimer = 1f;
 
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
-        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
         // Inicializar vidas
@@ -28,6 +27,11 @@ public class PlayerCombat : MonoBehaviour
         UpdateHeartsUI();
 
         currentCheckpoint = transform.position;
+    }
+
+    private void FixedUpdate()
+    {
+        animator.SetInteger("Life", currentLives);
     }
 
     public void TakeDamage(float damage)
@@ -47,6 +51,8 @@ public class PlayerCombat : MonoBehaviour
         // Reducir vida
         currentLives--;
         UpdateHeartsUI();
+        
+        animator.SetTrigger("Damage");
 
         if (currentLives <= 0)
         {
@@ -80,8 +86,8 @@ public class PlayerCombat : MonoBehaviour
     private void Die()
     {
         // Acción al morir
-        Debug.Log("El jugador ha muerto.");
-        StartCoroutine(Respawn(0.5f));
+        animator.SetTrigger("Dead");
+        StartCoroutine(Respawn(1f));
 
     }
 
@@ -89,6 +95,7 @@ public class PlayerCombat : MonoBehaviour
     {
         rb.simulated = false;
         rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(1f);
         transform.localScale = Vector3.zero;
         yield return new WaitForSeconds(duration);
         currentLives = maxLives;

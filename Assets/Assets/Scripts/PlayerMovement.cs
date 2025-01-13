@@ -36,10 +36,10 @@ public class PlayerMovement : MonoBehaviour
     {
         RecoilDirection = GetComponentInChildren<Rotation>().direction;
         flipDirection = GetComponentInChildren<Rotation>().degrees;
+        animator.SetFloat("movement", rb.velocity.x);
+        animator.SetBool("isShooting", weapon.IsShooting());
         
         FlipSprite(flipDirection);
-        
-        if(rb.velocity.x <= minVelocity) SwitchAnimation("Default");
 
         if (canMove && weapon.IsShooting())
         {
@@ -69,7 +69,6 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator Recoil()
     {
         canMove = false;
-        SwitchAnimation("Arma");
         if (weapon.isShootingPrimary)
         {
             horizontal = RecoilDirection.x * -1;
@@ -111,7 +110,6 @@ public class PlayerMovement : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         rb.velocity = Vector2.zero;
-        SwitchAnimation("Default");
     }
 
     public bool IsMaxHeight()
@@ -126,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "MovingPlataform")
+        if (collision.gameObject.CompareTag("MovingPlataform"))
         {
             transform.parent = collision.transform;
         }
@@ -134,18 +132,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "MovingPlataform")
+        if (collision.gameObject.CompareTag("MovingPlataform"))
         {
             transform.parent = null;
         }
     }
-    private void SwitchAnimation(string animated, float corosfade = 0.2f)
-    {
-        if (nowPlayin != animated)
-        {
-            nowPlayin = animated;
-
-            animator.CrossFade(animated, corosfade);
-        }
-    }
+    
 }
