@@ -18,13 +18,13 @@ public class PlayerMovement : MonoBehaviour
     private float vertical;
     private float flipDirection;
     private Vector3 RecoilDirection;
-    
+
     [SerializeField] private Weapon weapon;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] public Rigidbody2D rb;
     [SerializeField] private Animator animator;
     [SerializeField] private LayerMask groundLayer;
-    
+
     private string nowPlayin;
 
     private void Awake()
@@ -36,10 +36,10 @@ public class PlayerMovement : MonoBehaviour
     {
         RecoilDirection = GetComponentInChildren<Rotation>().direction;
         flipDirection = GetComponentInChildren<Rotation>().degrees;
-        
+        animator.SetFloat("movement", rb.velocity.x);
+        animator.SetBool("isShooting", weapon.IsShooting());
+
         FlipSprite(flipDirection);
-        
-        if(rb.velocity.x <= minVelocity) SwitchAnimation("Default");
 
         if (canMove && weapon.IsShooting())
         {
@@ -69,13 +69,12 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator Recoil()
     {
         canMove = false;
-        SwitchAnimation("Arma");
         if (weapon.isShootingPrimary)
         {
             horizontal = RecoilDirection.x * -1;
             vertical = RecoilDirection.y * -1;
 
-            if(!IsMaxHeight())
+            if (!IsMaxHeight())
             {
                 rb.velocity = new Vector2(rb.velocity.x + (horizontal * recoilSpeed_1),
                     rb.velocity.y + (vertical * recoilSpeed_1));
@@ -89,20 +88,20 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(0, rb.velocity.y);
             canMove = true;
         }
-        else if(weapon.isShootingSecondary)
+        else if (weapon.isShootingSecondary)
         {
             horizontal = RecoilDirection.x * -1;
             vertical = RecoilDirection.y * -1;
 
             rb.velocity = new Vector2(rb.velocity.x + (horizontal * recoilSpeed_2), rb.velocity.y + (vertical * recoilSpeed_2));
-            
+
             yield return new WaitForSeconds(weapon.secundary_fireRate);
             canMove = true;
             StartCoroutine(Decelerate());
         }
-        
+
     }
-    
+
     IEnumerator Decelerate()
     {
         while (rb.velocity.magnitude > 0.1f)
@@ -111,7 +110,6 @@ public class PlayerMovement : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         rb.velocity = Vector2.zero;
-        SwitchAnimation("Default");
     }
 
     public bool IsMaxHeight()
@@ -121,12 +119,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(transform.position-transform.up * castDistance, boxSize);
+        Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "MovingPlataform")
+        if (collision.gameObject.CompareTag("MovingPlataform"))
         {
             transform.parent = collision.transform;
         }
@@ -134,18 +132,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "MovingPlataform")
+        if (collision.gameObject.CompareTag("MovingPlataform"))
         {
             transform.parent = null;
         }
     }
-    private void SwitchAnimation(string animated, float corosfade = 0.2f)
-    {
-        if (nowPlayin != animated)
-        {
-            nowPlayin = animated;
 
-            animator.CrossFade(animated, corosfade);
-        }
-    }
 }
