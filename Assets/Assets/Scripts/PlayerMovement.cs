@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float recoilSpeed_1 = 8f;
-    public float recoilSpeed_2 = 16f;
+    public float recoilSpeed_1 = 20f;
+    public float recoilSpeed_2 = 28f;
     public float decelerationRate = 0.75f;
     public float minVelocity = 0.1f; // Velocidad mínima antes de detenerse por completo
     public Vector2 knockbackForce;
@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 rb.velocity = new Vector2(rb.velocity.x + (horizontal * recoilSpeed_1),
-                    (rb.velocity.y + (vertical * recoilSpeed_1)) * .2f);
+                    (rb.velocity.y + (vertical * recoilSpeed_1)) * .1f);
             }
             yield return new WaitForSeconds(weapon.principal_fireRate);
             rb.velocity = new Vector2(0, rb.velocity.y);

@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1921405094196555315}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.2188, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1875, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -121,7 +121,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.19, y: 0.94}
+  m_Size: {x: 2.38, y: 1.88}
   m_EdgeRadius: 0
 --- !u!50 &8989643357374741638
 Rigidbody2D:
@@ -156,14 +156,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33b6ad9c14f8fa34998b9480e0c04a65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recoilSpeed_1: 12
-  recoilSpeed_2: 20
+  recoilSpeed_1: 20
+  recoilSpeed_2: 28
   decelerationRate: 0.75
   minVelocity: 0.1
   knockbackForce: {x: 16, y: 8}
   canMove: 1
-  boxSize: {x: 1.19, y: 3.5}
-  castDistance: 2.22
+  boxSize: {x: 2.38, y: 4.88}
+  castDistance: 3.4
   weapon: {fileID: 3711808383543714528}
   spriteRenderer: {fileID: 243604835074579059}
   rb: {fileID: 8989643357374741638}
@@ -399,17 +399,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: gun
       objectReference: {fileID: 0}
-    - target: {fileID: 5179602070608513734, guid: 39a3eb4a0c226934db952cf3bbad82b6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 7904956540636842482, guid: 39a3eb4a0c226934db952cf3bbad82b6, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7904956540636842482, guid: 39a3eb4a0c226934db952cf3bbad82b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.1877
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7904956540636842482, guid: 39a3eb4a0c226934db952cf3bbad82b6, type: 3}
       propertyPath: m_LocalPosition.y
