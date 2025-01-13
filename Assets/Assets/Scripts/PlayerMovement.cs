@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 rb.velocity = new Vector2(rb.velocity.x + (horizontal * recoilSpeed_1),
-                    (rb.velocity.y + (vertical * recoilSpeed_1)) * .5f);
+                    (rb.velocity.y + (vertical * recoilSpeed_1)) * .2f);
             }
             yield return new WaitForSeconds(weapon.principal_fireRate);
             rb.velocity = new Vector2(0, rb.velocity.y);
@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
     {
         while (rb.velocity.magnitude > 0.1f)
         {
-            rb.velocity = new Vector2(rb.velocity.x * decelerationRate, rb.velocity.y * decelerationRate);
+            rb.velocity = new Vector2(rb.velocity.x * decelerationRate, rb.velocity.y);
             yield return new WaitForFixedUpdate();
         }
         rb.velocity = Vector2.zero;
