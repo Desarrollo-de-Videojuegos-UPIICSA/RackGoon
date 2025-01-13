@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f8d316bac83dbc84896d5c5fabb4ee7c
+guid: 22727e9bd5c791347ad3301c05bfc526
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -283,15 +283,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -12, y: -5.5}
-        - {x: -12, y: 2.5}
-        - {x: -5, y: -14.5}
-        - {x: -12, y: -14.5}
-      - - {x: 12, y: -14.5}
-        - {x: 5, y: -14.5}
-        - {x: 12, y: 3.5}
-        - {x: 12, y: -9.5}
+      outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
