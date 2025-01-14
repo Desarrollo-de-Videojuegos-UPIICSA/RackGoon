@@ -13,7 +13,7 @@ public class zonadeprogreso : MonoBehaviour
             Scene currentScene = SceneManager.GetActiveScene();
 
             // Recarga la escena actual
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("Zoo");
         }
     }
 }
