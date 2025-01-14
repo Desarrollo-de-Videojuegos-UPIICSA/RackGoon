@@ -50,8 +50,6 @@ public class plataforma_cae : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         rb.bodyType = RigidbodyType2D.Dynamic;
         coli.enabled = false;
-
-      
-
+        
     }
 }

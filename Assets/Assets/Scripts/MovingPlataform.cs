@@ -16,6 +16,7 @@ public class MovingPlataform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         MoveTo = EndPoint.position;
     }
 
