@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6938930020055021531}
   m_Layer: 0
   m_Name: Zombie
-  m_TagString: Bala
+  m_TagString: ENEMY
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,10 +103,10 @@ MonoBehaviour:
   MoveSpeed: 2
   MaxDisJugador: 10
   Player: {fileID: 6189798109951167676, guid: 1d6ecc3619722a44a845ac9f4bf4db3e, type: 3}
-  AttackDistance: 1
-  AttackDuration: 2
-  AttackCooldown: 5
   Vidazombie: 0
+  CapaPlataforma:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!50 &4920651281561942261
 Rigidbody2D:
   serializedVersion: 4
