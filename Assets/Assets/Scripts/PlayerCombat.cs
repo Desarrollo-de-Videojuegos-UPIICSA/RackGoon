@@ -126,4 +126,16 @@ public class PlayerCombat : MonoBehaviour
             collision.GetComponent<Collider2D>().enabled = false; // Desactiva el colider del Checkpoint
         }
     }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == ("ENEMY"))
+        {
+            TakeDamage(1, collision.GetContact(0).normal*-1);
+        }
+    }
+
+
+
 }

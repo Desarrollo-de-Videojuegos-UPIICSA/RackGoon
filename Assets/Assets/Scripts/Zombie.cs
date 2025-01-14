@@ -106,10 +106,7 @@ public class Zombie : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.tag == ("Player"))
-        {
-            collision.gameObject.GetComponent<PlayerCombat>().TakeDamage(1, collision.GetContact(0).normal);
-        }
+    
 
 
     }

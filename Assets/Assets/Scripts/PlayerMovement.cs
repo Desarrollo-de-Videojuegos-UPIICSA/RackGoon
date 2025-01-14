@@ -128,6 +128,9 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.parent = collision.transform;
         }
+
+
+
     }
 
     private void OnCollisionExit2D(Collision2D collision)
