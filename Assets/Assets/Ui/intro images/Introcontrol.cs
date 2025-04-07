@@ -118,13 +118,13 @@ public class Introcontrol : MonoBehaviour
 
             else
             {
-                UnityEngine.Debug.Log("Time has run out!");
+               // UnityEngine.Debug.Log("Time has run out!");
 
                 currentImage++;
 
                 if (currentImage >= imageArray.Length)
                 {
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(2);
                 Cursor.visible = true;
                 Screen.lockCursor = false;
                 Destroy(this);

@@ -15,6 +15,7 @@ public class Pinguino_emperador : MonoBehaviour
     private Vector2 direction;
     public bool waitin = true;
     private bool move = false;
+    public int seerange = 10;
 
     public int HPPin;
 
@@ -49,7 +50,7 @@ public class Pinguino_emperador : MonoBehaviour
     {
       
 
-            if (direction.magnitude <= 10 )
+            if (direction.magnitude <= seerange )
             {
 
               //  rigi.AddForce(new Vector2(direction.x, transform.position.y) * speed*50 * Time.deltaTime);

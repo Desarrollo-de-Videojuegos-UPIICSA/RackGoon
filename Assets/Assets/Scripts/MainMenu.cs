@@ -105,7 +105,7 @@ public class MainMenu : MonoBehaviour
     public void BotonPlay()
     {
         // Debug.Log("clicking game time");
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 
     public void Botonexit()

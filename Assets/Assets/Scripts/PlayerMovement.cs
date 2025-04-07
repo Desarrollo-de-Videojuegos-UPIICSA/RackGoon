@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     {
         RecoilDirection = GetComponentInChildren<Rotation>().direction;
         flipDirection = GetComponentInChildren<Rotation>().degrees;
+
         animator.SetFloat("movement", rb.velocity.x);
         animator.SetBool("isShooting", weapon.IsShooting());
 

@@ -160,7 +160,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.9686275, g: 0.8470589, b: 0.64705884, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -221,23 +221,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imageArray:
-  - {fileID: 2800000, guid: 133025948dbe8a54fba8401d73efa5bf, type: 3}
-  - {fileID: 2800000, guid: 634aa403833580946a72337c5532477c, type: 3}
-  - {fileID: 2800000, guid: a927ec6ca920ffc40aa6fe8cf0412e17, type: 3}
-  - {fileID: 2800000, guid: 9098c0a0ebdea94408084779cb5b0449, type: 3}
-  - {fileID: 2800000, guid: 0f6b31de1eeeea64c90355cc4ef7dfe1, type: 3}
-  - {fileID: 2800000, guid: 3eb5263e135cfe948870c17807318530, type: 3}
-  - {fileID: 2800000, guid: fa2cd2fb5f3b74d4f8bfe4112872f839, type: 3}
-  - {fileID: 2800000, guid: a269554ffa4e19c4f893423f43c391e4, type: 3}
-  - {fileID: 2800000, guid: 319635d792ea9bb4c9f061d68c3ff5d9, type: 3}
-  - {fileID: 2800000, guid: 3d029e10cf417ca49bb3f5cad003983c, type: 3}
-  - {fileID: 2800000, guid: f611a0ea29a86d14f9c715f831381fdd, type: 3}
-  - {fileID: 2800000, guid: ca4fbadd8d5e6644ca3fab0c3620994a, type: 3}
-  - {fileID: 2800000, guid: 6bb6b346f09beaf449e038a81d63540c, type: 3}
-  - {fileID: 2800000, guid: 90e9ee2d192f7024e802cf6425061f74, type: 3}
-  - {fileID: 2800000, guid: 5ba8521033ce72f4591f3582d5562f27, type: 3}
-  - {fileID: 2800000, guid: 489c1ddecb163f348968ccfe2010b087, type: 3}
-  - {fileID: 2800000, guid: 999b130b2d46bf344aa910405dc9b647, type: 3}
+  - {fileID: 2800000, guid: 602b54e91ea3d8a4dbe41b851c3c98cf, type: 3}
+  - {fileID: 2800000, guid: aef0fd000f245a048862eb0f82b2f130, type: 3}
+  - {fileID: 2800000, guid: bcc9e1ee09829014dbd5123f1843287a, type: 3}
+  - {fileID: 2800000, guid: 00e92c4ac40307b4781d77b930356d41, type: 3}
+  - {fileID: 2800000, guid: 70175c6e507f38c458c7478a81b61c76, type: 3}
+  - {fileID: 2800000, guid: 3d0912d957a8e364580a768a5bda4808, type: 3}
+  - {fileID: 2800000, guid: 248ace04c90102c4688872ae7ccbfbac, type: 3}
+  - {fileID: 2800000, guid: 059b8da8a5242c544a90c4f02698f245, type: 3}
+  - {fileID: 2800000, guid: 5d24470d278269c4ebe9b7eb061210c0, type: 3}
   timer1: 5
   timer1Remaining: 5
   timer1IsRunning: 1
